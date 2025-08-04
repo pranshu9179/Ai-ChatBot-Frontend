@@ -102,23 +102,30 @@
 
 // export default ChatWidget;
 
-
-
 import { useState, useEffect, useRef } from "react";
-import { RiRobot3Fill, RiUser3Fill, RiSendPlaneFill, RiCloseFill } from "react-icons/ri";
+import {
+  RiRobot3Fill,
+  RiUser3Fill,
+  RiSendPlaneFill,
+  RiCloseFill,
+} from "react-icons/ri";
 
 // Message Component
 const Message = ({ type, text, from }) => {
   if (type === "info") return null;
 
   return (
-    <div className={`flex items-start gap-3 mb-4 ${from === "user" ? "justify-end" : "justify-start"}`}>
+    <div
+      className={`flex items-start gap-3 mb-4 ${
+        from === "user" ? "justify-end" : "justify-start"
+      }`}
+    >
       {from === "bot" && (
         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 shadow-lg">
           <RiRobot3Fill className="text-white text-lg" />
         </div>
       )}
-      
+
       <div
         className={`max-w-[75%] p-4 rounded-2xl shadow-md ${
           from === "user"
@@ -128,7 +135,7 @@ const Message = ({ type, text, from }) => {
       >
         <p className="text-sm leading-relaxed whitespace-pre-wrap">{text}</p>
       </div>
-      
+
       {from === "user" && (
         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center flex-shrink-0 shadow-lg">
           <RiUser3Fill className="text-white text-lg" />
@@ -147,8 +154,14 @@ const TypingIndicator = () => (
     <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl rounded-tl-md shadow-md border border-gray-100 dark:border-gray-700">
       <div className="flex space-x-1">
         <div className="w-2.5 h-2.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-bounce"></div>
-        <div className="w-2.5 h-2.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-        <div className="w-2.5 h-2.5 bg-gradient-to-r from-pink-500 to-red-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+        <div
+          className="w-2.5 h-2.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-bounce"
+          style={{ animationDelay: "0.1s" }}
+        ></div>
+        <div
+          className="w-2.5 h-2.5 bg-gradient-to-r from-pink-500 to-red-500 rounded-full animate-bounce"
+          style={{ animationDelay: "0.2s" }}
+        ></div>
       </div>
     </div>
   </div>
@@ -166,7 +179,7 @@ const InputArea = ({ onSend }) => {
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSubmit();
     }
@@ -249,7 +262,12 @@ const ChatWidget = ({ isOpen = true, onClose, theme = "light" }) => {
   if (!isOpen) return null;
 
   return (
-    <div className={`w-full max-w-md h-[600px] bg-transparent rounded-3xl shadow-2xl flex flex-col overflow-hidden backdrop-blur-sm ${theme === "dark" ? "dark" : ""}`}>
+    <div
+      style={{ height: "100%" }}
+      className={`w-full bg-transparent rounded-3xl shadow-2xl flex flex-col justify-between overflow-hidden backdrop-blur-sm ${
+        theme === "dark" ? "dark" : ""
+      }`}
+    >
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 text-white p-6 flex justify-between items-center rounded-t-3xl">
         <div className="flex items-center gap-3">
@@ -280,7 +298,7 @@ const ChatWidget = ({ isOpen = true, onClose, theme = "light" }) => {
             radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
             radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
             radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.1) 0%, transparent 50%)
-          `
+          `,
         }}
       >
         {messages.length === 0 && !isTyping ? (
@@ -297,7 +315,9 @@ const ChatWidget = ({ isOpen = true, onClose, theme = "light" }) => {
           </div>
         ) : (
           <div className="space-y-1">
-            {messages.map((msg, i) => <Message key={i} {...msg} />)}
+            {messages.map((msg, i) => (
+              <Message key={i} {...msg} />
+            ))}
             {isTyping && <TypingIndicator />}
           </div>
         )}
@@ -310,4 +330,3 @@ const ChatWidget = ({ isOpen = true, onClose, theme = "light" }) => {
 };
 
 export default ChatWidget;
-

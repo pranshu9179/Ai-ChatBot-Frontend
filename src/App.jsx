@@ -80,9 +80,6 @@ import { useState } from "react";
 
 // export default App;
 
-
-
-
 // Demo App Component
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -94,84 +91,101 @@ const App = () => {
     document.documentElement.classList.toggle("dark", newTheme === "dark");
   };
 
+  // return (
+  //   // <div
+  //   //   className={`min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-purple-900 transition-all duration-500 ${
+  //   //     theme === "dark" ? "dark" : ""
+  //   //   }`}
+  //   // >
+  //   //   {/* Demo Page Content */}
+  //   //   {/* <div className="p-8">
+  //   //     <div className="max-w-4xl mx-auto">
+  //   //       <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
+  //   //         My Website
+  //   //       </h1>
+  //   //       <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+  //   //         Experience the future of AI conversations with our advanced chatbot. Get instant, intelligent responses to all your questions.
+  //   //       </p>
+
+  //   //       <div className="mb-8">
+  //   //         <button
+  //   //           onClick={toggleTheme}
+  //   //           className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-105"
+  //   //         >
+  //   //           {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
+  //   //         </button>
+  //   //       </div>
+
+  //   //       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+  //   //         <div className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700">
+  //   //           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+  //   //             About Our Service
+  //   //           </h2>
+  //   //           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+  //   //             Our AI-powered chatbot provides instant, accurate responses to help solve your problems efficiently. Built with cutting-edge technology for the best user experience.
+  //   //           </p>
+  //   //         </div>
+  //   //         <div className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700">
+  //   //           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+  //   //             Features
+  //   //           </h2>
+  //   //           <ul className="text-gray-600 dark:text-gray-300 space-y-3 leading-relaxed">
+  //   //             <li className="flex items-center gap-2">
+  //   //               <span className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></span>
+  //   //               Real-time streaming responses
+  //   //             </li>
+  //   //             <li className="flex items-center gap-2">
+  //   //               <span className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></span>
+  //   //               Smart AI conversations
+  //   //             </li>
+  //   //             <li className="flex items-center gap-2">
+  //   //               <span className="w-2 h-2 bg-gradient-to-r from-pink-500 to-red-500 rounded-full"></span>
+  //   //               Beautiful dark/light themes
+  //   //             </li>
+  //   //             <li className="flex items-center gap-2">
+  //   //               <span className="w-2 h-2 bg-gradient-to-r from-green-500 to-blue-500 rounded-full"></span>
+  //   //               Fully responsive design
+  //   //             </li>
+  //   //           </ul>
+  //   //         </div>
+  //   //       </div>
+  //   //     </div>
+  //   //   </div> */}
+
+  //   // </div>
+  //     {/* Floating Chat Button */}
+
+  // );
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-purple-900 transition-all duration-500 ${theme === "dark" ? "dark" : ""}`}>
-      {/* Demo Page Content */}
-      {/* <div className="p-8">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
-            My Website
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-            Experience the future of AI conversations with our advanced chatbot. Get instant, intelligent responses to all your questions.
-          </p>
-          
-          <div className="mb-8">
-            <button
-              onClick={toggleTheme}
-              className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-105"
-            >
-              {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
-            </button>
+    <>
+      <div
+        style={{ width: "100%", position: "relative", height: "100%" }}
+       
+      >
+        {!isOpen && (
+          <button
+            onClick={() => setIsOpen(true)}
+            className="fixed bottom-8 right-8 w-18 h-18 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 flex items-center justify-center z-50 animate-pulse"
+          >
+            <RiRobot3Fill className="text-white text-3xl" />
+          </button>
+        )}
+        {isOpen && (
+          <div
+            style={{ width: "100vw", height: "100vh" }}
+            className="fixed z-50"
+          >
+            <ChatWidget
+              isOpen={isOpen}
+              onClose={() => setIsOpen(false)}
+              theme={theme}
+            />
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                About Our Service
-              </h2>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                Our AI-powered chatbot provides instant, accurate responses to help solve your problems efficiently. Built with cutting-edge technology for the best user experience.
-              </p>
-            </div>
-            <div className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Features
-              </h2>
-              <ul className="text-gray-600 dark:text-gray-300 space-y-3 leading-relaxed">
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></span>
-                  Real-time streaming responses
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></span>
-                  Smart AI conversations
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-gradient-to-r from-pink-500 to-red-500 rounded-full"></span>
-                  Beautiful dark/light themes
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-gradient-to-r from-green-500 to-blue-500 rounded-full"></span>
-                  Fully responsive design
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div> */}
-
-      {/* Floating Chat Button */}
-      {!isOpen && (
-        <button
-          onClick={() => setIsOpen(true)}
-          className="fixed bottom-8 right-8 w-18 h-18 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 flex items-center justify-center z-50 animate-pulse"
-        >
-          <RiRobot3Fill className="text-white text-3xl" />
-        </button>
-      )}
+        )}
+      </div>
 
       {/* Chat Widget */}
-      {isOpen && (
-        <div className="fixed bottom-8 right-8 z-50">
-          <ChatWidget 
-            isOpen={isOpen} 
-            onClose={() => setIsOpen(false)} 
-            theme={theme} 
-          />
-        </div>
-      )}
-    </div>
+    </>
   );
 };
 
