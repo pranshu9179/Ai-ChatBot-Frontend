@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import { RiRobot3Fill } from "react-icons/ri";
+import ChatWidget from "./components/ChatWidget";
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -53,11 +54,13 @@ const App = () => {
       ) : (
         <div className="fixed bottom-24 right-4 sm:bottom-20 sm:right-6 z-50 w-[90vw] max-w-md">
           <div className="relative bg-white shadow-xl rounded-lg overflow-hidden border border-gray-300 dark:border-gray-700">
-            <iframe
+            {/* <iframe
               src="/chatbot"
               className="w-full h-[60vh] sm:h-[70vh]"
               title="Chatbot"
-            ></iframe>
+            ></iframe> */}
+            <ChatWidget />
+
             <button
               onClick={() => setOpen(false)}
               className="absolute top-2 right-2 text-xl text-red-600 hover:text-red-400 bg-transparent"
